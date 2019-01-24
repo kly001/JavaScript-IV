@@ -7,58 +7,44 @@ Prototype Refactor
 2. Your goal is to refactor all of this code to use ES6 Classes. The console.log() statements should still return what is expected of them.
 
 */
-function GameObjects(attributes) {
-    this.createdAt = attributes.createdAt;
-    this.dimensions = attributes.dimensions;
-    this.destroy = function() {
-      return `${this.name} was removed from the game.`;
-    };
+
+  class GameObjects {
+      constructor(attributes) {
+        this.createdAt = attributes.createdAt;
+        this.dimensions = attributes.dimensions;   
+      }
+      destroy() {
+        console.log(`${this.name} was removed from the game.`);
+        return `${this.name} was removed from the game.`;
+        }
   }
-  
-  /*
-    === CharacterStats ===
-    * healthPoints
-    * name
-    * takeDamage() // prototype method -> returns the string '<object name> took damage.'
-    * should inherit destroy() from GameObject's prototype
-  */
-  function CharacterStats(charAttributes) {
-    GameObjects.call(this, charAttributes);
-    this.healthPoints = charAttributes.healthPoints;
-    this.name = charAttributes.name;
-    this.damage = function() {
+
+class CharacterStats extends GameObjects {
+    constructor(charAttributes) {
+      super(charAttributes);
+      this.healthPoints = charAttributes.healthPoints;
+      this.name = charAttributes.name;
+    }
+    takeDamage() {
+      console.log(`${this.name} took damage.`);
       return `${this.name} took damage.`;
-    };
-  }
+    }
+}
   
   
-  /*
-    === Humanoid (Having an appearance or character resembling that of a human.) ===
-    * team
-    * weapons
-    * language
-    * greet() // prototype method -> returns the string '<object name> offers a greeting in <object language>.'
-    * should inherit destroy() from GameObject through CharacterStats
-    * should inherit takeDamage() from CharacterStats
-  */
-   
-  function Humanoid(humanAttributes) {
-    CharacterStats.call(this, humanAttributes);
-    this.team = humanAttributes.team;
+class Humanoid extends CharacterStats {
+    constructor(humanAttributes) {
+      super(humanAttributes);
+      this.team = humanAttributes.team;
     this.weapons = humanAttributes.weapons;
-    this.language = humanAttributes.language;
-    this.greet = function() {
-      return `${this.name} offers a greeting in ${this.language}`;
-    }; 
-  }
-  /*
-    * Inheritance chain: GameObject -> CharacterStats -> Humanoid
-    * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
-    * Instances of CharacterStats should have all of the same properties as GameObject.
-  */
-  
-  // Test you work by un-commenting these 3 objects and the list of console logs below:
-  
+     this.language = humanAttributes.language; 
+    }
+    greet() {
+      console.log(`${this.name} offers a greeting in ${this.language}`);
+      return `${this.name} offers a greeting in ${this.language}`
+    }
+}
+
   
     const mage = new Humanoid({
       createdAt: new Date(),
