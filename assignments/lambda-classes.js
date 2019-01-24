@@ -7,7 +7,7 @@ class Person {
         this.gender = attrib.location;
     }
     speak() {
-        return `Hello my name is ${this.name}, I am from ${this.location}.`;
+        console.log(`Hello my name is ${this.name}, I am from ${this.location}.`);
     }
 }
 
@@ -32,6 +32,9 @@ constructor(studentAttrib) {
     this.previousBackground = studentAttrib.previousBackground;
     this.className = studentAttrib.className;
     this.favSubjects = studentAttrib.favSubjects;
+    }
+    listSubjects() {
+        console.log(this.favSubjects);
     }
     PRAssignment(){
         console.log(`${student.name} has submitted a PR for ${subject}.`);
@@ -118,3 +121,4 @@ const mark = new ProjectManager ({
     gradClass: "WEB21",
     favInstructor: "Joan",
 })
+
