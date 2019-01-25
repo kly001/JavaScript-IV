@@ -34,13 +34,13 @@ constructor(studentAttrib) {
     this.favSubjects = studentAttrib.favSubjects;
         }
     listSubjects() {
-        return `${this.student}'s favorite subjects are ${this.favSubjects}.`;
+        return `${this.name}'s favorite subjects are ${this.favSubjects}.`;
     }
     PRAssignment(student, subject){
-        return `${student.name} has submitted a PR for ${subject}.`;
+        return `${this.name} has submitted a PR for ${subject}.`;
     }
     sprintChallenge(student, subject) {
-        return `${student.name} has begun sprint challenge on ${subject}.`;
+        return `${this.name} has begun sprint challenge on ${subject}.`;
     }
 }
 
