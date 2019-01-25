@@ -5,11 +5,12 @@ class Person {
         this.age = attrib.age;
         this.location = attrib.location;
         this.gender = attrib.location;
+        }
+        speak() {
+            return `Hello my name is ${this.name}, I am from ${this.location}.`;
+        }
     }
-    speak() {
-        console.log(`Hello my name is ${this.name}, I am from ${this.location}.`);
-    }
-}
+
 
 class Instructor extends Person {
     constructor(instructorAttrib) {
@@ -18,29 +19,28 @@ class Instructor extends Person {
     this.favLanguage = instructorAttrib.favLanguage;
     this.catchPhrase = instructorAttrib.catchPhrase;
     }
-    demo(){
-        console.log(`Today we are learning about ${subject}.`);
+    demo(subject) {
+        return `Today we are learning ${subject}.`;
     }
-    grade() {
-        console.log(`${this.student.name}receives a perfect score on ${subject}.`);
+    grade(student,subject){
+        return `${student.name} receives a perfect score in ${subject}.`
     }
 }
-
 class Student extends Person {
 constructor(studentAttrib) {
     super(studentAttrib);
     this.previousBackground = studentAttrib.previousBackground;
     this.className = studentAttrib.className;
     this.favSubjects = studentAttrib.favSubjects;
-    }
+        }
     listSubjects() {
-        console.log(this.favSubjects);
+        return `${this.student}'s favorite subjects are ${this.favSubjects}.`;
     }
-    PRAssignment(){
-        console.log(`${student.name} has submitted a PR for ${subject}.`);
+    PRAssignment(student, subject){
+        return `${student.name} has submitted a PR for ${subject}.`;
     }
-    sprintChallenge() {
-        console.log(`${student.name} has begun sprint challenge on ${subject}.`);
+    sprintChallenge(student, subject) {
+        return `${student.name} has begun sprint challenge on ${subject}.`;
     }
 }
 
@@ -50,11 +50,11 @@ class ProjectManager extends Instructor {
     this.gradClassName = pmAttrib.gradClassName;
     this.favInstructor = pmAttrib.favInstructor;
     }
-    standup() {
-        console.log(`${this.name} announces to ${channel}, @channel standy times.`);
+    standup(channel) {
+        return `${this.name} announces to ${channel}, @channel standup times.`;
     }
-    debugsCode(){
-        console.log(`${this.name} debugs ${student.name}'s code on ${subject}.`);
+    debugsCode(student, subject){
+        return `${this.name} debugs ${student.name}'s code on ${subject}.`;
     }
 }
 
@@ -63,19 +63,19 @@ const joan = new Instructor({
     age: 40,
     location: "California",
     gender: "Female",
-    specialty:  "Ruby",
-    favLanguage: "JavaScript",
+    specialty:  "Math",
+    favLanguage: "German",
     catchPhrase:"Are you sure that's what you want to do?",
 })
 
-const edgar = new Instructor({
-    name: "Edgar",
+const elmer = new Instructor({
+    name: "Elmer",
     age: 44,
     location: "Florida",
     gender: "Male",
-    specialty: "Scratch",
-    favLanguage: "CSS",
-    catchPhrase: "Try it yourself",
+    specialty: "Music",
+    favLanguage: "Portugese",
+    catchPhrase: "Why don't you try it yourself",
 })
 
 const susan = new  Student({
@@ -85,7 +85,7 @@ const susan = new  Student({
         gender: "Female",
         previousBackground: "personal assistant",
         className: "WEB21",
-        favoriteSubjects: ["Ruby", "Perl","Html"]
+        favSubjects: ["Fencing","Woodshop","Math"]
 })
 
 const john = new  Student({
@@ -95,7 +95,7 @@ const john = new  Student({
     gender: "Male",
     previousBackground: "policeman",
     className: "CS107",
-    favoriteSubjects: ["JavaScript", "CSS","Redux"]
+    favSubjects: ["Gym","Home Economics","Recess"]
 })
 
 const pearl = new ProjectManager ({
@@ -103,8 +103,8 @@ const pearl = new ProjectManager ({
     age: 25,
     location: "North Dakota",
     gender: "Female",
-    specialty:  "JavaScript",
-    favLanguage: "JavaScript",
+    specialty:  "Sign Language",
+    favLanguage: "JMandarin",
     catchPhrase:"Time will tell",
     gradClass: "CS107",
     favInstructor: "Edgar",
@@ -115,10 +115,24 @@ const mark = new ProjectManager ({
     age: 66,
     location: "Arizona",
     gender: "Male",
-    specialty:  "PL/SQL",
-    favLanguage: "Python",
-    catchPhrase:"I here you",
+    specialty:  "Archery",
+    favLanguage: "Spanish",
+    catchPhrase:"I here that !",
     gradClass: "WEB21",
     favInstructor: "Joan",
 })
-
+console.log(joan.speak())
+console.log(elmer.speak())
+console.log(susan.speak())
+console.log(john.speak())
+console.log(pearl.speak())
+console.log(mark.speak())
+console.log(joan.demo("math"))
+console.log(elmer.demo("science"))
+console.log(joan.grade(john,"english"))
+console.log(elmer.grade(susan, "social studies"))
+console.log(pearl.standup("science"))
+console.log(mark.standup("history"))
+console.log(pearl.debugsCode(john, "CSS"))
+console.log(mark.debugsCode(susan,"RUBY"))
+console.log(susan.listSubjects())
